@@ -1,0 +1,29 @@
+name: Fetch Energy Data
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch: # allows manual trigger from GitHub UI
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        run: uv sync
+
+      - name: Run fetch
+        env:
+          NEON_HOST: ${{ secrets.NEON_HOST }}
+          NEON_USER: ${{ secrets.NEON_USER }}
+          NEON_PASSWORD: ${{ secrets.NEON_PASSWORD }}
+          NEON_DATABASE: ${{ secrets.NEON_DATABASE }}
+          EIA_API_KEY: ${{ secrets.EIA_API_KEY }}
+        run: uv run python fetch.py
