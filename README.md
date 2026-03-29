@@ -1,5 +1,7 @@
 # weather-and-emissions-demo
 
+[![Fetch Energy Data](https://github.com/olehmer/weather-and-emissions-demo/actions/workflows/fetch.yml/badge.svg)](https://github.com/olehmer/weather-and-emissions-demo/actions/workflows/fetch.yml)
+
 ## Setup
 
 1. Copy `.env.example` to `.env` and fill in your credentials (or create `.env` with the variables listed in `fetch.py`).
